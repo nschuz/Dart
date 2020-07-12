@@ -1,0 +1,406 @@
+DART tiene 
+AOT (Ahead of time ): compilando rapido 
+
+Hot Reload que en tiempo real podemos ver cambios y ejecutarlo denuvo (reinicia la aplicacion)
+
+
+main (){
+
+}
+// se recomeinda que en las funciones diga que retorna entonces le ponemos void no rertrona nada
+
+void main (){
+    print("Hola Mundo");
+}
+
+/*
+COmnetarios 
+*/
+
+var nombre= "Chuz";
+print("hola"+ nombre);
+print("hola $nombre"); // inyectar algun valor aqui adentro 
+
+es muy importante asignar el tipo de datos y no usar var porque no se nos asigann todos su metodos 
+
+Tipos de Dtaos numerios y String 
+
+void main (){
+    //Numeros 
+    int  empleados=10;
+    //double x cantidades de eneteros 
+    double pi =3.141592;
+
+    double numero =1.0; // es peligroso si ponongo solo 1 porque dart dice que es un entero 
+
+    print("$empleados - $pi");
+
+
+    //Strings - CAdena de carcateres 
+    String  nombre ='TON\Y';
+    print(nombre[0]); //regresa t 
+    print(nombre[nombre.lenght-1]);
+
+    
+
+}
+
+
+/// Booleanos 
+
+void main (){
+    var activo = true;
+    bool activados2= !true;
+    print(activo);
+    print(activados2);
+    if (activados2==true){
+        print("Esta Funcionando")
+    }else{
+        print("No esta funcioanndo");
+    }
+}
+
+//Lista es igual un arreglo se le conoce como listas  es dinamica i la declario asi es decir puedo conbinar ints , bleans , String
+
+void  main (){
+List numeros =[1,2,3,4,5];
+List <int> num =[1,2,3,4,5]; // aseguramos que la lsiat asigne puros numeros enteros  definimos la lista 
+numeros.add(6); // añadimso un numero al final del arreglo
+numeros.add("chuz");
+print(numeros);
+print(num);
+
+// Definir un arreglo en su tamaño fijo
+List masNumeros = new List (10);
+print(masNumeros);
+
+//Cuando no asignamos nada a variablaes o arreglos o lista se llenan como null pero no poedmo agrf¿gar con el valor add porque ya esta predfinido
+masNumeros[0]= 10;
+print(masNumeros);
+}
+
+//MAP
+void main  (){
+        String propeidad = "soltero";
+    Map <String , dynamic> persona ={
+        "nombre": "carlos",
+        "edad": 32,
+        "soltero": true
+    };
+    // esta constituiod por llave y valor 
+    //String llave y dynamic culaquier valor
+print (persona["nombre"]);
+print(persona["edad"]);
+print(persona[propeidad]); //regresa true
+
+Map <int , String> personas ={
+    1: "Tony",
+    2: "peter",
+    9: "Strage"
+};
+// agergar nueveos elemntos 
+personas.addAll({4 : "Chuz"});
+print (personas);
+print (personas[4]); // no es una lista estoy apuntando al numero 2 
+
+
+
+
+}
+
+
+//Fuocnioens 
+
+void main (){
+
+print("Hola mundo");
+saludar ();
+print(saludar2());
+  saludar2();
+  print (saludar3("Como estas" ,"chuz"));
+String mensaje = saludar4 (texto: "chuz" , nombre: "Guapo"); // deebmos especificar
+
+}
+
+saludar (){
+    print("Hola");
+}
+String saludar2 (){
+  return "hola Chuz";
+  
+}
+String saludar3 (String texto , String nombre){
+    return "hola $texto $nombre";
+}
+
+// cunaod en mi arguemnto tengo llaves tengo que especificar el nombre 
+
+String saludar4 ({String texto , String nombre }){
+    return "$texto $nombre";
+}
+
+// funciones de flechas 
+String saludar5 ({String texto , String nombre } )=> "$texto $nombre";
+ // es lo mismo que la pagiam saluadar4 solo que menos liena de codigo 
+
+ // clase 
+ es un molde 
+ void main (){
+     final  wolwerine = new Heroe("wolwerine", "regeneracion"); // definir una instacia de una clase  y puedo omitir la palabra new , final no puedo asiggnar es un constante 
+    print(wolwerine);
+    print(wolwerine.poder);
+    print(wolwerine.nombre);
+
+
+ }
+ class Heroe{
+     String nombre;
+     String poder;
+    //Constructor 
+    Heroe ({String nombre , String  poder}){
+        this.nombre=nombre; 
+        this.poder=poder;
+    }
+    // al moemnto de poner llaves es ipmortante  
+    String toString (){
+        return "${this.nombre} - ${this.poder}"
+    }
+    //metodo es el que se encuentra de una clase y una funcion fuera de una classe
+ }
+
+ /// Foma corta de definir propiedades de una clase  
+// metodo dentro de una clase y funcion fuera de una clase 
+
+ void main (){
+     final  wolwerine = new Heroe(nombre: "wolwerine", poder: "regeneracion"); 
+// definir una instacia de una clase  y puedo omitir la palabra new , final no puedo asiggnar es un constante 
+
+   print(wolwerine);
+    print(wolwerine.poder);
+    print(wolwerine.nombre);
+    print(wolwerine.toString());
+ }
+class Heroe {
+String nombre;
+String poder;
+
+//Constructor version larga  cuando tie una llave debo esoecificar en el argumento
+ Heroe ({String nombre , String  poder}){
+        this.nombre=nombre; 
+        this.poder=poder;
+    }
+
+// Constructor version corta 
+Heroe ({this.nombre , this.poder});
+
+//regresa los atributos 
+  String toString () =>  "nombre: $nombre - poder: $poder";
+
+
+}
+ 
+
+ //Constructorres con nombre 
+import 'dart:convert';
+
+void main() {
+  
+//   final wolverine = new Heroe('Logan', 'Regeneración');
+  final rawJson    = '{ "nombre": "Logan", "poder":"Regeneración" }';
+  Map parsedJson = json.decode( rawJson );
+  
+//   print( parsedJson );
+  
+  final wolverine = new Heroe.fromJson( parsedJson );
+  
+  print(wolverine.nombre);
+  print(wolverine.poder);
+  
+}
+
+
+
+
+
+class Heroe {
+  
+  String nombre;
+  String poder;
+  
+  Heroe( this.nombre, this.poder );
+  
+  //constructores con nombres 
+	Heroe.fromJson( Map parsedJson ) {
+    nombre = parsedJson['nombre'];
+    poder  = parsedJson['poder'];
+      
+  }
+  
+  
+}
+
+
+
+
+
+// Getters y setter
+
+void main (){
+    //havemos nuestra instacia
+    final cuadrado = new Cuadrado();
+    cuadrado.lado=10;
+    print (cuadrado);
+    print('area: ${cuadrado.area});
+
+}
+
+
+class Cuadrado {
+    double _lado;
+    double _area;
+    // si pongo un guion bajo se hacen privadas solo viisble dentro de la propia clase
+
+  set lado (double valor){
+      if(valor <=0 ){
+          throw ("El lado no puede ser menor igual a cero");
+      }
+      _lado=valor;
+  }
+
+  double get area {
+      return _lado* _lado;
+
+  } // no van parentesis
+
+
+toString ()=> 'Lado: $_lado';
+}
+
+//la fucion de flcha solo sirve para fuiciones de una sola linea
+
+
+// CLASES ABSTRACTAS
+//una clase abtsracta oblirgar otras clases que implemneten esa propiedades 
+
+void main (){
+    final perro = new Perro();
+    perro.emitirSonido();
+
+abstract class  Animal {
+    int patas;
+
+    void emitirSonido();
+}
+
+class Perro implements Animal{
+    int patas; // debe tener patas
+    int colas;
+
+    //emitir su funcione
+    void emitirSonido ()=>print("guauuu");
+
+}
+class gato implements Animal{
+    int patas;
+        void emitirSonido ()=>print("guauuu");
+}
+
+/// Extends  hereda su atributos y metodos 
+public main (){
+    final superman = new Heroe();
+    superman.poder="volar";
+    superman.nombre="Clark Kent";
+}
+
+
+class Personaje{
+    String poder;
+    String nombre; 
+}
+
+class Heroe extends Personaje {
+    //String poder;
+   // String nombre;
+    int valentia;
+}
+class Villano extends Personaje {
+    //String poder;
+    //String nombre;
+    int maldad;
+
+}
+
+//Mixins 
+
+abstract class Animal {
+    
+}
+
+ abstract class Mamifero extends Animal {
+
+}
+abstract class Ave  extends Animal {
+
+}
+abstract class Pez Mamifero extends Animal {
+
+}
+
+//mis mixins 
+abstract class Volador {
+  void volar()=>print ("Esto volando");
+}
+abstract class Caminante  {
+  void caminar()=>print ("Esto caminado");
+}
+abstract class Nadador  {
+  void nadat()=>print ("Esto  Nadador");
+}
+
+//
+class Defin extends Mamifero with Nadador{
+
+}
+class Murcielafo extends Mamifero with Caminante , Volador {
+  
+}
+class Paloma exteds Ave with Caminante . Volador {}
+class Tiburo exteds Pez with Nadado {
+
+}
+
+void main(){
+  final pato = new Pato ();
+  pato.volar();
+  // sirven para asignar los metodos y lo que necesito 
+}
+
+//futures o promesas 
+//tarea asincrono que se hace en  hilo indepentiente 
+
+Futur<String> httpHet (String url){
+return Future.delayed(new Duration (seconds: 4),(){
+  return "Hola Mundo"
+})
+}
+
+void main (){
+  print ("estamos apunto de pedir datos");
+  httpGet("http://api.nada.com/aliens").then((data){
+
+  });
+  print("Ultima linea");
+}
+
+
+Asyc - AWait
+//asyc ayuda a transadforma un funcion en una tarea asincornoa 
+await permite esperra que se ejecuta
+
+void main () asyc {
+  print ("estamos apunto de pedir datos");
+ String data = await  httpGet("http://api.nada.com/aliens").then((data){
+
+  });
+  print("Ultima linea");
+}
